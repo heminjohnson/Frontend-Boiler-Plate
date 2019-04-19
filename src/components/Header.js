@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 
 class Header extends Component {
   render () {
@@ -6,7 +7,9 @@ class Header extends Component {
       <nav>
         <div className='container'>
           <div className='nav-wrapper'>
-            Hello world
+            <div>
+              {this.props.hello ? 'hello world came from backend' : 'connection failed'}
+            </div>
           </div>
         </div>
       </nav>
@@ -14,4 +17,8 @@ class Header extends Component {
   }
 }
 
-export default Header
+function mapStateToProps ({ hello }) {
+  return { hello }
+}
+
+export default connect(mapStateToProps)(Header)
